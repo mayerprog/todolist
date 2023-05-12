@@ -1,0 +1,30 @@
+<%- include("header") -%>
+
+    <div class="box" id="heading">
+        <h1 style="color:blueviolet">
+            <%= listTitle%>
+        </h1>
+    </div>
+
+    <div class="box">
+        <% activitiesPost.map(activity=> { %>
+            
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= activity._id%>" onChange="this.form.submit()">
+                    <p>
+                        <%= activity.text%>
+                    </p>
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle%>">
+            </form>
+            <% }) %>
+
+                <form class="item" action="/" method="post">
+                    <input type="text" placeholder="what did you do?" name="activity" autocomplete="off" autofocus>
+                    <button type="submit" name="list" value=<%=listTitle%>>+</button>
+                </form>
+    </div>
+
+
+    <%- include("footer") -%>
